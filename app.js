@@ -3,7 +3,6 @@ const socket = require('socket.io');
 const Text = require('./models/text');
 const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
-const host = '0.0.0.0;'
 
 const dbURI = 'mongodb+srv://tyl99:tyl99@cluster0.des4i.mongodb.net/iz-chat?retryWrites=true&w=majority';
 const db = mongoose.connect(dbURI,{useNewUrlParser:true,useCreateIndex :  true, useUnifiedTopology:true})
@@ -16,7 +15,7 @@ const db = mongoose.connect(dbURI,{useNewUrlParser:true,useCreateIndex :  true, 
 
 // App setup
 const app = express();
-const server = app.listen(port,host, function(){
+const server = app.listen(port, function(){
     console.log('listening for requests on port 3000,');
 });
 
