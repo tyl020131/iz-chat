@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style.css" rel="stylesheet">
+    <title>My Chat-App</title>
+</head>
+<body>
+    <div id="members">
+        <label for="cars">Choose Member:</label>
+
+        <select name="member" id="member" data-selected="<%= member %>">
+            <option value="wonyoung">Wonyoung</option>
+            <option value="sakura">Sakura</option>
+            <option value="yuri">Yuri</option>
+            <option value="yena">Yena</option>
+            <option value="yujin">Yujin</option>
+            <option value="nako">Nako</option>
+            <option value="eunbi">Eunbi</option>
+            <option value="hyewon">Hyewon</option>
+            <option value="hitomi">Hitomi</option>
+            <option value="chaewon">Chaewon</option>
+            <option value="minju">Minju</option>
+            <option value="chaeyeon">Chaeyeon</option>                   
+        </select>
+    </div>
+    <div id="chat-container">
+        <div id="iz-header">
+            <h2>IZ-Chat</h2>
+        </div>
+        <div id="area">
+            <div id="chats">
+                <% texts.forEach((text)=>{ 
+                    if(member=="none"){
+                        member = "wonyoung";
+                    }
+                    if(text.user == member){ %>
+                        <div class="messages user"> 
+                            <img src="<%= 'images/'+ text.user +'propic.jpg' %>" style="order:2">
+                            <div>
+                                <span><strong><%= text.user %></strong></span>
+                                <span class="content"><%= text.message %></span>
+                            </div>
+                     </div>
+                    <% } else{ %>
+                        <div class="messages other">
+                            <img src="<%= 'images/'+ text.user +'propic.jpg' %>">
+                            <div>
+                                <span><strong><%= text.user %></strong></span>
+                                <span class="content"><%= text.message %></span>
+                            </div>                 
+                        </div>
+                 <%   } %>
+                    
+                   
+              <%  }) %>
+                
+               
+        </div>
+        <div id="typing" style="margin-top:10px;"></div>
+            
+    </div>
+        
+        <div><input type="text" id="message" placeholder="Message"></div>
+        <div><button type="submit" id="send" id="submit-chat">Send</button></div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
